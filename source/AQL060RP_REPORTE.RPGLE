@@ -1,13 +1,12 @@
-     ‚*------------------------------------------------------------------*
-     ‚*                    YOBEL SCM                                     *
-     ‚* Modulo . . : AQL                                                 *
-     ‚* Aplicativo : Emite Informe final                                 *
-     ‚* Fecha  . . : 07/04/2010                                          *
-     ‚*------------------------------------------------------------------*
-     ‚* Descripci. : Migrar para que soporte - LX                        *
-     ‚* Fecha  . . : 18/05/2012                                          *
-     ‚* Requerimien: R0001192                                            *
-     ‚*------------------------------------------------------------------*
+     â€š*------------------------------------------------------------------*
+     â€š* Modulo . . : AQL                                                 *
+     â€š* Aplicativo : Emite Informe final                                 *
+     â€š* Fecha  . . : 07/04/2010                                          *
+     â€š*------------------------------------------------------------------*
+     â€š* Descripci. : Migrar para que soporte - LX                        *
+     â€š* Fecha  . . : 18/05/2012                                          *
+     â€š* Requerimien: R0001192                                            *
+     â€š*------------------------------------------------------------------*
      h datfmt(*iso) datedit(*ymd-)
      faql060dp  cf   e             workstn infds(infds)
      faqlsga    if   e           k disk
@@ -27,7 +26,7 @@
       *-
      d w_dprod         s             50a
      d
-     ‚*--------------------< Rutina Execución de Programa >---------------------
+     â€š*--------------------< Rutina ExecuciÃ³n de Programa >---------------------
      c     sr_Imprime    begsr
      c                   Dow       (not *In03) and (not *in12)
      c                   exfmt     wdw01
@@ -35,15 +34,15 @@
      c                   if        *in03 or *in12
      c                   leave
      c                   endif
-     ‚* Función de Consulta F4
+     â€š* FunciÃ³n de Consulta F4
      c                   if        *in04
      c                   exsr      sr_funlista
      c                   eval      *in04   = *off
      c                   iter
      c                   endif
-     ‚* Valida lo ingresado
+     â€š* Valida lo ingresado
      c                   exsr      sValIngDat
-     ‚* sin error
+     â€š* sin error
      c                   If        vTodoOK<>'NO'
      c                   exsr      sr_Call
      c                   if        %trim(vmsgerr) <> ''
@@ -55,7 +54,7 @@
       *
      c                   Endsr
 
-     ‚*--------------------< Rutina q' invoca Ste Programa >--------------------
+     â€š*--------------------< Rutina q' invoca Ste Programa >--------------------
      c     sr_Call       begsr
       *
      c                   movel     w_cli         p_cli             8
@@ -74,17 +73,17 @@
      c                             Spool'
      c                   endsr
 
-     ‚*--------------------< Valida Ingreso de Datos >--------------------------
+     â€š*--------------------< Valida Ingreso de Datos >--------------------------
      c     sValIngDat    Begsr
       *
-     ‚* Inicializa Variables de rutina
+     â€š* Inicializa Variables de rutina
      c                   movel     *blanks       vTodoOk           2
      c                   movea     '0000'        *in(60)
       *-
      c                   do
       * Ingrese cia
      c                   if        (vcia   = *all' ')
-     c                   eval      vmsgerr = 'Ingrese código Facility'
+     c                   eval      vmsgerr = 'Ingrese cÃ³digo Facility'
      c                   eval      vTodoOK = 'NO'
      c                   eval      vdes    = *all' '
      c                   eval      *in60 = *on
@@ -113,13 +112,13 @@
       *-
      c                   eval      w_dcli  = *all' '
      c                   if        (w_cli = 0)
-     c                   eval      vmsgerr = 'Ingrese Código de Cliente'
+     c                   eval      vmsgerr = 'Ingrese CÃ³digo de Cliente'
      c                   eval      vTodoOK = 'NO'
      c                   eval      *in61 = *on
      c                   else
      c     k_rcml01      chain     rcml01r
      c                   if        not %found
-     c                   eval      vmsgerr = 'Código de Cliente no existe'
+     c                   eval      vmsgerr = 'CÃ³digo de Cliente no existe'
      c                   eval      vTodoOK = 'NO'
      c                   eval      *in61 = *on
      c                   else
@@ -127,9 +126,9 @@
      c                   endif
      c                   endif
      c   61              leave
-      *- Análisis
+      *- AnÃ¡lisis
      c                   if        w_numa = 0
-     c                   eval      vmsgerr = 'Debe ingresar Número de Análisis'
+     c                   eval      vmsgerr = 'Debe ingresar NÃºmero de AnÃ¡lisis'
      c                   eval      vTodoOK = 'NO'
      c                   eval      *in62 = *on
      c                   else
@@ -139,7 +138,7 @@
      c     w_prod        chain     iiml02r
      c                   eval      w_dprod = idesc
      c                   else
-     c                   eval      vmsgerr = 'Número análisis no existe'
+     c                   eval      vmsgerr = 'NÃºmero anÃ¡lisis no existe'
      c                   eval      vTodoOK = 'NO'
      c                   eval      *in62 = *on
      c                   eval      w_dprod=*all' '
@@ -151,17 +150,17 @@
       *-
      c                   Endsr
       *-
-     ‚*----------------< F4: Lista pantallas de seleccion por campo >-----------
+     â€š*----------------< F4: Lista pantallas de seleccion por campo >-----------
      c     sr_funlista   Begsr
       *-
      c                   movel     *blanks       vTodoOk           2
      c                   eval      *in04 = *off
      c                   movea     '0000'        *in(60)
-     ‚* Pantalla
+     â€š* Pantalla
      c                   if        $rec  = 'WDW01'
       *-
      c                   select
-     ‚*            Consulta de Activo
+     â€š*            Consulta de Activo
      c                   when      $Fld  = 'VCIA'
      c                   call      'RAT903RP'
      c                   parm      '  '          p_val             3
@@ -196,10 +195,10 @@
      c                   endif
      c*-
      c                   endsr
-     ‚*--------------------< Rutina Inicial de Programa >-----------------------
+     â€š*--------------------< Rutina Inicial de Programa >-----------------------
      c     *inzsr        begsr
       *-
-     ‚* Estructura de Claves                                                ----
+     â€š* Estructura de Claves                                                ----
      c     k_rcml01      klist
      c                   kfld                    w_cli
       *-
@@ -212,7 +211,7 @@
      c                   kfld                    k_cctabl
      c                   kfld                    k_cccode
       *-
-     ‚* Facility x Default                                                  ----
+     â€š* Facility x Default                                                  ----
      c                   Call      'SCM911RP'
      c                   parm      $User         p_user           10
      c                   parm      '  '          p_fac             3
@@ -226,12 +225,12 @@
      c                   endif
       *-
      c                   eval      k_cctabl = 'AQL_TPRO'
-     ‚*- Declaración de Variables                                           ----
+     â€š*- DeclaraciÃ³n de Variables                                           ----
      c     *like         define    cctabl        k_cctabl
      c     *like         define    cccode        k_cccode
      c     *like         define    sgaite        w_prod
      c*    *like         define    ccdesc        w_dprod
-     ‚* Executa Programa                                                    ----
+     â€š* Executa Programa                                                    ----
      c                   exsr      sr_Imprime
      c                   eval      *inlr = *on
       *-
