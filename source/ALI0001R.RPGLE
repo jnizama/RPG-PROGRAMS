@@ -1,21 +1,20 @@
      H DATFMT(*ISO) DATEDIT(*YMD-)
-     ‚**********************************************************************
-     ‚* Modulo     : Proyecto de Laptop Alicorp                            *
-     ‚* Aplicativo : Obtener parámetros de acceso al servidor FTP y        *
-     ‚*              Ejecuta Transferencia de archivo Formulas.            *
-     ‚* Fecha      : 18/01/2008                                            *
-     ‚**********************************************************************
+     â€š**********************************************************************
+     â€š* Aplicativo : Obtener parÃ¡metros de acceso al servidor FTP y        *
+     â€š*              Ejecuta Transferencia de archivo Formulas.            *
+     â€š* Fecha      : 18/01/2008                                            *
+     â€š**********************************************************************
      faliftp    if   e           k disk
       *
      C
      c                   ExSr      Sr_Proceso
      c                   Eval      *Inlr = *On
-     ‚*--------------------< Rutina a Proceso de Programa >-----------------------
+     â€š*--------------------< Rutina a Proceso de Programa >-----------------------
      c     Sr_Proceso    BegSr
-      * Accesar a la configuracion del FTP por compañia del cliente
+      * Accesar a la configuracion del FTP por compaÃ±ia del cliente
      c     k_aliftp      chain     aliftpr                            40
      c                   Dow       *in40 ='0'
-     c                   if        alifun = 'RECEPFORM'                         Recepcionar Fórmulas
+     c                   if        alifun = 'RECEPFORM'                         Recepcionar FÃ³rmulas
      c                   exsr      Sr_MovConfig
      c                   Call      'ALI0001C'
      c                   parm                    p_fac
@@ -37,7 +36,7 @@
      c                   enddo
      c
      c                   EndSr
-     ‚*--------------------< Rutina mover datos de Config.>-----------------------
+     â€š*--------------------< Rutina mover datos de Config.>-----------------------
      c     Sr_MovConfig  BegSr
      c                   eval      w_alicia = alicia                            ALI
      c                   eval      w_alifun = alifun                            RECEPFORM
@@ -53,7 +52,7 @@
      c                   eval      w_alicar = alicar                            Carpeta AS400
      c                   eval      w_aliara = aliara                            Recep.MANTXT/TXTLPC
      c                   EndSr
-     ‚*--------------------< Rutina Inicial del Programa >-----------------------
+     â€š*--------------------< Rutina Inicial del Programa >-----------------------
      c     *Inzsr        BegSr
      c     *entry        plist
      c                   parm                    p_fac             3            Facility (FA,GL)
@@ -64,7 +63,7 @@
      c                   kfld                    p_alicia
      c*                  kfld                    p_alifun
      c
-     ‚*- Define Variables
+     â€š*- Define Variables
      c     *like         define    alicia        p_alicia
      c     *like         define    alicia        w_alicia
      c     *like         define    alifun        p_alifun
