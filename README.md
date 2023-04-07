@@ -10,6 +10,8 @@ Main Screen
 
 <img width="643" alt="image" src="https://user-images.githubusercontent.com/3922089/230551940-da80ae7a-8d29-4d4a-abe8-3b27d52536cc.png">
 
+Working with Record Screen
+
 <img width="727" alt="image" src="https://user-images.githubusercontent.com/3922089/230552010-41a6d205-e4b9-4198-b6db-077cc858c5ee.png">
 
 <img width="843" alt="image" src="https://user-images.githubusercontent.com/3922089/230552038-01a607df-8be7-412e-8b42-0b0b7cdfdbb1.png">
