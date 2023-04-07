@@ -1,0 +1,19 @@
+     A          R XANTICIPOR
+     A
+     A            CIA            2S
+     A            TIP            1S
+     A            PRE            2A
+     A            ANO            2S
+     A            NUM            8S
+     A            NROEXTFAC1    20A
+     A            ANTICIPO$1    13S 2
+     A            NROEXTFAC2    20A
+     A            ANTICIPO$2    13S 2
+     A            NROEXTFAC3    20A
+     A            ANTICIPO$3    13S 2
+     A
+     A          K CIA
+     A          K TIP
+     A          K PRE
+     A          K ANO
+     A          K NUM

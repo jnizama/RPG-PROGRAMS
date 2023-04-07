@@ -1,0 +1,14 @@
+     A          R RANTICSLDO
+     A            CLT            8S 0       COLHDG('CLIENTE')
+     A            MON            3A         COLHDG('NOMBRE')
+     A            SEC            4S 0       COLHDG('SECUENCIA')
+     A            NROEXTFAC     20A         COLHDG('NRO EXTERNO FACT')
+     A            MONTO         13S 2       COLHDG('MONTO')
+     A            SALDO         13S 2       COLHDG('SALDO')
+     A            USERUPD       10A         COLHDG('USUARIO UPDATE')
+     A            FECHAUPD        L         COLHDG('FECHA UPDATE')
+     A            HORAUPD         T         COLHDG('HORA UPDATE')
+     A*
+     A          K CLT
+     A          K MON
+     A          K SEC

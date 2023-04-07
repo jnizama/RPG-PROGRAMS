@@ -1,0 +1,133 @@
+ Fecha:  20/03/2015                                                          
+              Estructura de Archivos                                         
+    Archivo:   FVBPCSF/SIL                                                   
+    Formato:   IPS100IL                                                      
+Descripcion:   Invoice Line History                                          
+Campo        Desde   Hasta Longitud  Dec  Tipo  Descripcion                  
+ILID             1       2       2         A    Record ID (IL/IX)            
+ILINVN           3       7       8    0    P    Original Document Number     
+ILLINE           8      10       4    0    P    Invoice Line Number          
+ILPROD          11      45      35    0    O    Item Number                  
+ILQTY           46      51      11    3    P    Quantity                     
+ILNET           52      61      19    7    P    Net Price Trans-Stocking     
+ILWHS           62      64       3         A    Warehouse                    
+ILDATE          65      69       8    0    P    Last Transaction Date        
+ILCCOM          70      71       2         A    Customer Commission Code     
+ILICOM          72      73       2         A    Item Commission Code         
+ILS1CM          74      75       2         A    Salesperson 1 Commission Code
+ILS2CM          76      77       2         A    Salesperson 2 Commission Code
+ILS3CM          78      79       2         A    Salesperson 3 Commission Code
+ILSAL1          80      83       6    0    P    Salesperson 1                 
+ILSAL2          84      87       6    0    P    Salesperson 2                 
+ILSAL3          88      91       6    0    P    Salesperson 3                 
+ILCOMM          92      92       1         A    Commission Extracted Flag     
+ILLTYP          93      93       1         A    Line Type (R/S)               
+ILIRES          94      95       2         A    Inventory Reason Code         
+ILORD           96     100       8    0    P    Order/Invoice Number          
+ILSEQ          101     103       4    0    P    Line Number                   
+ILCPO          104     126      23    0    O    Customer Purchase Order Number
+LUDTE1         127     131       8    0    P    User Defined Date 1           
+LUDTE2         132     136       8    0    P    User Defined Date 2           
+ILCART         137     150      14    0    O    Carton Numbers                
+ILDOCR         151     165      15    0    O    Document Reference            
+ILCONS         166     169       6    0    P    Consolidation Number          
+ILCUSB         170     174       8    0    P    Billing Customer Number       
+
+ILUM           175     176       2         A    Unit of Measure               
+ILTR01         177     181       5         A    Tax Rate Code 01              
+ILTR02         182     186       5         A    Tax Rate Code 02              
+ILTR03         187     191       5         A    Tax Rate Code 03              
+ILTR04         192     196       5         A    Tax Rate Code 04              
+ILTR05         197     201       5         A    Tax Rate Code 05              
+ILTR06         202     206       5         A    Tax Rate Code 06              
+ILTR07         207     211       5         A    Tax Rate Code 07              
+ILTR08         212     216       5         A    Tax Rate Code 08              
+ILTR09         217     221       5         A    Tax Rate Code 09              
+ILTR10         222     226       5         A    Tax Rate Code 10              
+ILTA01         227     235      17    4    P    Tax Amount 01 -Transaction Cur
+ILTA02         236     244      17    4    P    Tax Amount 02 -Transaction Cur
+ILTA03         245     253      17    4    P    Tax Amount 03 -Transaction Cur
+                                       Pagina:     1                          
+ Fecha:  20/03/2015                                                           
+              Estructura de Archivos                                          
+    Archivo:   FVBPCSF/SIL                                                    
+    Formato:   IPS100IL                                                       
+Descripcion:   Invoice Line History                                           
+Campo        Desde   Hasta Longitud  Dec  Tipo  Descripcion                   
+ILTA04         254     262      17    4    P    Tax Amount 04 -Transaction Cur
+ILTA05         263     271      17    4    P    Tax Amount 05 -Transaction Cur
+ILTA06         272     280      17    4    P    Tax Amount 06 -Transaction Cur
+ILTA07         281     289      17    4    P    Tax Amount 07 -Transaction Cur
+ILTA08         290     298      17    4    P    Tax Amount 08 -Transaction Cur
+ILTA09         299     307      17    4    P    Tax Amount 09 -Transaction Cur
+ILTA10         308     316      17    4    P    Tax Amount 10 -Transaction Cur
+ILCOMP         317     318       2    0    P    Company Number                
+ILCUST         319     323       8    0    P    Customer Number               
+ILDPFX         324     325       2         A    Document Prefix               
+ILDOCN         326     330       8    0    P    Document Number               
+ILDYR          331     332       2    0    P    Document Year                 
+ILDTYP         333     333       1    0    P    Document Type                 
+ILODPX         334     335       2         A    Original Document Prefix      
+ILODYR         336     337       2    0    P    Original Document Year        
+ILODTP         338     338       1    0    P    Original Document Type        
+ILITEM         339     373      35    0    O    Customer Item Number          
+ILRES1         374     375       2         A    Customer Reason Code          
+ILRES2         376     377       2         A    Disposition Reason Code       
+ILRES3         378     379       2         A    Q/C Reason Code               
+ILCPNT         380     380       1         A    Component Line Item Flag      
+ILRMA          381     385       8    0    P    RMA Number                    
+ILCLAS         386     387       2         A    Item Class                    
+ILREV          388     395      15    2    P    G/L Revenue Amount            
+ILCONT         396     445      50    0    O    Bid Contract ID               
+ILCOUD         446     449       4         A    Country of Ultimate Destinat  
+ILNETS         450     459      19    7    P    Billing Net Price-Selling UOM 
+ILOCLS         460     461       3    0    P    Order Class                   
+ILQINS         462     467      11    3    P    Invoice Line Qty Selling UOM  
+ILSLCU         468     472       8    0    P    Sales History Customer Number 
+ILSLUM         473     474       2         A    Original Selling UOM          
+ILNPSC         475     476       2         A    Net Price Source Code         
+ILLPSC         477     478       2         A    List Price Source Code        
+ILIFLG         479     479       1         A    MPB Invoice Flag              
+ILLIST         480     487      14    4    P    List Price Trans Curr-Stock UM
+ILBLST         488     495      14    4    P    List Price Base Curr-Stock UM 
+ILSDTE         496     500       8    0    P    Ship Date                     
+ILCSGN         501     505       8    0    P    Consignment Number            
+ILSHID         506     540      35    0    O    Ship Identification           
+ILPKGG         541     545       8    0    P    Packing Group                 
+ILONLY         546     546       1         A    Item Tax Only Treatment     
+ILSTDP         547     576      30    0    O    Ship To Department          
+                                       Pagina:     2                        
+ Fecha:  20/03/2015                                                         
+              Estructura de Archivos                                        
+    Archivo:   FVBPCSF/SIL                                                  
+    Formato:   IPS100IL                                                     
+Descripcion:   Invoice Line History                                         
+Campo        Desde   Hasta Longitud  Dec  Tipo  Descripcion                 
+ILBASI         577     584      14    4    P    Item Tax Only Basis Price   
+ILCWUM         585     586       2         A    Catch Weight Pricing UOM    
+ILSWUM         587     592      11    4    P    Standard Weight per UOM     
+ILWINV         593     598      11    4    P    Weight Invoiced             
+ILWISU         599     604      11    4    P    Weight Invoiced-Selling UOM 
+ILEXTA         605     612      15    2    P    Extended Amount             
+ILLOAD         613     616       6    0    P    Load Number                 
+ILDTC          617     617       1    0    P    Discount Type Code          
+ILSBNO         618     652      35    0    O    Self Bill Reference Number  
+ILRFLN         653     655       4    0    P    Reference Line Number       
+ILPFAC         656     658       3         A    Pricing Facility                    
+ILPSQS         659     664      11    3    P    POD Shortage Qty Selling            
+ILPQSS         665     670      11    3    P    POD Shortage Qty Stocking           
+ILPOQS         671     676      11    3    P    POD Overage Qty Selling             
+ILPQOS         677     682      11    3    P    POD Overage Qty Stocking            
+ILPDRC         683     684       2         A    POD Discrepancy Reason Code         
+ILPSHA         685     692      15    2    P    POD Shortage Amount                 
+ILPOVA         693     700      15    2    P    POD Overage Amount                  
+ILPCST         701     708      15    5    P    Proof of Delivery Cost              
+ILDEPS         709     709       1    0    P    Deposit Source                      
+ILPSDW         710     715      11    4    P    POD Shortage Qty DWM                
+ILPODW         716     721      11    4    P    POD Overage Qty DWM                 
+ILSHIP         722     724       4    0    P    Ship To Number                      
+ILMNTR         725     728       4         A    Means of Transportation             
+ILCODS         729     732       4         A    Country of Ultimate Destinat        
+ILMPRS         733     734       2         A    Manual Price Reason Code            
+ILBORD         735     739       8    0    P    Blanket Order Reference Number      
+                               739   Longitud Registro                              
