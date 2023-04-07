@@ -1,0 +1,39 @@
+     A*%%TS  SD  20090605  085154  FSISVEF0    REL-V5R4M0  5722-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A          R WDW01
+     A*%%TS  SD  20090605  085154  FSISVEF0    REL-V5R4M0  5722-WDS
+     A                                      WINDOW(1 5 18 63)
+     A                                      CF03(03 'salir')
+     A                                      CF10(10 'grabar')
+     A                                      CF12(12 'cancelar')
+     A                                      CF04(04 'Listar')
+     A                                      RTNCSRLOC(&$REC &$FLD &$POS)
+     A                                      RMVWDW
+     A            $POS           4S 0H
+     A            $FLD          10A  H
+     A            $REC          10A  H
+     A                                 13  1'Intro'
+     A                                      DSPATR(HI)
+     A                                      COLOR(BLU)
+     A                                 13 26'F3:Salir'
+     A                                      DSPATR(HI)
+     A                                      COLOR(BLU)
+     A                                 13 51'F12:Cancelar'
+     A                                      COLOR(BLU)
+     A            VMSGERR       60A  O 11  1COLOR(RED)
+     A                                  8  3'Periodo:'
+     A                                  1 30'BPCS'
+     A                                      COLOR(BLU)
+     A                                  4  3'Proceso que congela cifras cargada-
+     A                                      s en el centro de trabajo'
+     A            W_PERIODO      6  0B  8 12
+     A*-------------------------------------------------------------------------
+     A          R DSPWDW
+     A*%%TS  SD  20020607  085215  FSISSSM0    REL-V4R4M0  5769-PW1
+     A                                      KEEP
+     A*-------------------------------------------------------------------------
+     A          R ASSUME
+     A                                      ASSUME
+     A                                      OVERLAY
+     A            TRIBILIN       1   O 24 79
