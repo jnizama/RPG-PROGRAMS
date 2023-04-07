@@ -1,0 +1,106 @@
+     A*%%TS  SD  19991214  162455  FSISEAF0    REL-V4R2M0  5769-PW1
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      PRINT
+     A*-------------------------------------------------------------------------
+     A          R SFLDSP                    SFL
+     A*%%TS  SD  19991214  162455  FSISEAF0    REL-V4R2M0  5769-PW1
+     A  33                                  SFLNXTCHG
+     A            DAT_ITM        4S 0H
+     A            $DSPOPC        2A  B  8  3
+     A  81                                  DSPATR(RI)
+     A            VTTDTE    R        O  8  6REFFLD(YCBRR/CBRCBR *LIBL/YCBR)
+     A            DESCT     R        O  8 11REFFLD(YCBRR/CBRNOM *LIBL/YCBR)
+     A            CBRUSR    R        O  8 43REFFLD(YCBRR/CBRUSR *LIBL/YCBR)
+     A            CBRFTR    R        O  8 56REFFLD(YCBRR/CBRFTR *LIBL/YCBR)
+     A            CBRHTR    R        O  8 68REFFLD(YCBRR/CBRHTR *LIBL/YCBR)
+     A*-------------------------------------------------------------------------
+     A          R SFLCTL                    SFLCTL(SFLDSP)
+     A*%%TS  SD  19991214  162455  FSISEAF0    REL-V4R2M0  5769-PW1
+     A                                      SFLSIZ(0013)
+     A                                      SFLPAG(0013)
+     A                                      CA03(03)
+     A                                      CF05(05)
+     A                                      CF06(06)
+     A                                      CF08(08)
+     A                                      CA12(12)
+     A                                      CF13(13)
+     A  31                                  CF17(17)
+     A  31                                  CF18(18)
+     A                                      CF23(23)
+     A                                      CF24(24)
+     A  31                                  PAGEUP(25)
+     A  31                                  PAGEDOWN(26)
+     A                                      CF09(09)
+     A                                      CF07(07)
+     A                                      RTNCSRLOC(&$REC &$FLD &$POS)
+     A                                      BLINK
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&$RRP)
+     A  31                                  SFLDSP
+     A  32                                  SFLDSPCTL
+     A  34                                  SFLCLR
+     A  30                                  SFLEND(*MORE)
+     A            $RRO           4S 0H      SFLRCDNBR(CURSOR)
+     A            $RRP           5S 0H
+     A            $RRT           4S 0H
+     A            $RRN           4S 0H
+     A            $REC          10A  H
+     A            $FLD          10A  H
+     A            $POS           4S 0H
+     A            $VER           2S 0H
+     A            $FUNIND       29A  H
+     A            $PGMTIT       40A  O  1  2
+     A                                  1 63DATE
+     A                                      EDTCDE(Y)
+     A                                  1 72TIME
+     A                                  2  2USER
+     A                                  2 27'Mantenimiento de Cobradores'
+     A                                      DSPATR(HI)
+     A            $PGMCOD       10A  O  2 70
+     A  31        $OPCDES       78A  O  4  2COLOR(BLU)
+     A N31                              4  2'No se puede procesar opciones en e-
+     A                                      ste momento.'
+     A                                      COLOR(BLU)
+     A                                  6  6'Cod.'
+     A                                      DSPATR(HI)
+     A                                  6 12'Nombre'
+     A                                      DSPATR(HI)
+     A                                  6 43'Usuario'
+     A                                      DSPATR(HI)
+     A                                  6 56'Fecha'
+     A                                      DSPATR(HI)
+     A                                  6 68'Hora'
+     A                                      DSPATR(HI)
+     A  31        $CTLOPC        2A  B  7  3
+     A  81                                  DSPATR(PC)
+     A  81                                  DSPATR(RI)
+     A            POS_ITM        4S 0B  7  6
+     A*-------------------------------------------------------------------------
+     A          R SFLPIE
+     A                                      CLRL(14)
+     A  80                                  ALARM
+     A                                      OVERLAY
+     A                                  8  5' '
+     A N31                             13 16'No existen datos para mostrar.'
+     A                                      COLOR(BLU)
+     A            $FUNDES       78   O 23  2COLOR(BLU)
+     A*-------------------------------------------------------------------------
+     A          R SFMDSP                    SFL
+     A                                      SFLMSGRCD(24)
+     A            $MSGKEY                   SFLMSGKEY
+     A            $PGMCOD                   SFLPGMQ
+     A          R SFMCTL                    SFLCTL(SFMDSP)
+     A                                      SFLDSP
+     A                                      SFLDSPCTL
+     A                                      SFLSIZ(0005)
+     A                                      SFLPAG(0001)
+     A                                      OVERLAY
+     A  38                                  SFLINZ
+     A  38                                  SFLEND
+     A            $PGMCOD                   SFLPGMQ
+     A            $MSGCOD        7A  H
+     A            $MSGVAR       78A  H
+     A*-------------------------------------------------------------------------
+     A          R DSPBLK
+     A                                  1  2' '

@@ -1,0 +1,134 @@
+     H DATFMT(*ISO) DATEDIT(*YMD-)
+     Faipclcddm if   e           k disk    usropn
+     FIIMAIP    if   e           k disk
+     FAIPPRDDDM UF A E           K DISK
+      ***************************************************************************
+      * Estructura de Datos de Programa                                    *
+      ***************************************************************************
+     D                sds
+     Duser                   254    263
+      ***************************************************************************
+      * Logica del Programa                                                *
+      ***************************************************************************
+     c                   exsr      proceso1
+     c                   exsr      proceso2
+     c*                  exsr      eliminar
+     c                   seton                                        lr
+      ***************************************************************************
+      * Borra el contenido del archivo working                             *
+      ***************************************************************************
+     c     proceso1      begsr
+      *************************
+      * BLANQUEA ARCHIVO
+      *************************
+     C/EXEC SQL
+     C+ delete from iimaip
+     c/end-exec
+     c                   endsr
+      ***************************************************************************
+      * Lee Registro por Registro                                          *
+      ***************************************************************************
+     c     proceso2      begsr
+     c                   open      aipclcddm
+     c                   read      aipclcddm                              50
+     c                   dow       not *in50
+     C                   Z-ADD     *ZEROS        WCOUNT            7 0
+      *************************
+      * GUARDA DATOS EN WORKING
+      *************************
+     c/exec sql
+     C+ INSERT INTO BPCDTA/IIMAIP (IID, IPROD, IDESC, IMLONG, IMWIDE,
+     C+ IMHIGH, IVULI, IMWTUM, IMNNWU, ICLAS) SELECT IID, IPROD, IDESC,
+     C+ IMLONG,IMWIDE,IMHIGH,IVULI, IMWTUM,IMNNWU,iclas FROM
+     C+ fvbpcsf/iimL01 WHERE ICLAS=:CLCCLS
+     c/end-exec
+     c/exec sql
+     c+ UPDATE BPCDTA/IIMAIP SET ICIA =:clccia WHERE ICLAS =:clccls
+     c/end-exec
+      *******************
+      * ACTUALIZO DATOS
+      *******************
+     c                   goto      next
+     c                   move      clccia        kcia
+     C                   exsr      rut_prd
+     c     next          tag
+     c                   read      aipclcddm                              50
+     c                   enddo
+     c                   close     aipclcddm
+     c                   endsr
+      ***************************************************************************
+      * Borra la Data Generada Al fin del proceso                          *
+      ***************************************************************************
+     c     eliminar      begsr
+     C/EXEC SQL
+     C+ delete from iimaip
+     c/end-exec
+     c                   endsr
+      ***************************************************************************
+      * Actualiza el Aiprdddm en Yobel03                                   *
+      ***************************************************************************
+     c     rut_prd       begsr
+     c                   open      iimaip
+     c                   read      IPI100IM                               50
+     c                   dow       not *in50
+     C                   move      *blanks       kprodu
+     C                   movel     iprod         kprodu
+     C     keyprd        chain     AIPPRDDDM
+     c                   if        %found
+     C                   MOVEL(P)  IDESC         PRDDES
+     C                   MOVEL(P)  IDESC         PRDDSC
+     C                   Z-ADD     *ZEROS        PRDLRG
+     C                   Z-ADD     *ZEROS        PRDANC
+     C                   Z-ADD     *ZEROS        PRDALT
+     C                   Z-ADD     *ZEROS        PRDVOL
+     C                   Z-ADD     *ZEROS        PRDPES
+     c                   exsr      restod
+     c                   update    AIPPRDR
+     c                   else
+     C                   MOVE      KCIA          PRDCIA
+     C                   MOVEL     KPRODU        PRDCPR
+     C                   MOVEL(P)  IDESC         PRDDES
+     C                   MOVEL(P)  IDESC         PRDDSC
+     C                   Z-ADD     *ZEROS        PRDLRG
+     C                   Z-ADD     *ZEROS        PRDANC
+     C                   Z-ADD     *ZEROS        PRDALT
+     C                   Z-ADD     *ZEROS        PRDVOL
+     C                   Z-ADD     *ZEROS        PRDPES
+     c                   exsr      restod
+     c                   write     AIPPRDR
+     c                   endif
+     c                   read      IPI100IM                               50
+     C                   ENDDO
+     c                   close     iimaip
+     C                   ENDsr
+      **********************************************************************
+      * Rutina Inicial                                                     *
+      **********************************************************************
+     c     *inzsr        begsr
+     c     keyprd        klist
+     c                   kfld                    kcia              3
+     c                   kfld                    kprodu           18
+     c                   endsr
+      *********************************************************************
+      * Guarda Datos Comunes                                               *
+      **********************************************************************
+     c     restod        begsr
+     c                   move      *blanks       prdcl1
+     c                   move      *blanks       prdcl2
+     c                   move      *blanks       prdcl3
+     c                   move      *blanks       prdcl4
+     c                   move      *blanks       prdcl5
+     c                   move      *blanks       prdf01
+     c                   move      *blanks       prdf02
+     c                   move      *blanks       prdf03
+     c                   move      *zeros        prdn01
+     c                   move      *zeros        prdn02
+     c                   move      *zeros        prdn03
+     c                   move      *blanks       prda01
+     c                   move      *blanks       prda02
+     c                   move      *blanks       prda03
+     c                   move      user          prdusr
+     c                   move      '1'           prdest
+     c                   move      *date         prdfec
+     c                   time                    prdhor
+     c                   endsr

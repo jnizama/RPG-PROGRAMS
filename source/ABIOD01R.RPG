@@ -1,0 +1,23 @@
+     H DATFMT(*ISO) DATEDIT(*YMD-)
+     ‚*
+     FTABLA03   UF   E             Disk    RENAME(RTABLA03R:TABLA03R)
+     ‚*
+     d THORA           s               T   INZ(T'00.00.00')
+     d THORAUX         s               T   INZ(T'00.00.00')
+     d THORAUX1        s               T   INZ(T'00.00.00')
+     d THORAUX2        s               T   INZ(T'00.00.00')
+     d nFecha          s               d   DatFmt(*iso)
+     d VHORA1          s              8A
+     d VHORA2          s              8A
+     d VHOR1           s             30A
+     d VHOR2           s             30A
+      *
+     C                   READ      TABLA03R                               20
+     C     *IN20         DOWEQ     '0'
+     C                   Z-ADD     *ZEROS        NSEG             10 0
+     C     FECHORFIN     SUBDUR    FECHORINI     NSEG: *S
+     C                   Z-ADD     NSEG          DIFERENCI
+     C                   UPDATE    TABLA03R
+     C                   READ      TABLA03R                               20
+     C                   ENDDO
+     C                   SETON                                        LR

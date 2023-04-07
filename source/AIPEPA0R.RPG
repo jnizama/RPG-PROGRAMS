@@ -1,0 +1,210 @@
+     ‚*----------------------------------------------------------
+     ‚* Parámetros de Programa de Despacho - Linea B
+     ‚* Fecha :12-10-2007
+     ‚*----------------------------------------------------------
+     ‚* Modificado :
+     ‚* Fecha      :
+     ‚* Motivo     :
+     ‚*
+     ‚*
+      * Motivo      :
+      *
+      * Programador :
+     ‚*----------------------------------------------------------
+     h datfmt(*ymd) datedit(*ymd-)
+     fAIPEPA0D  cf   e             workstn
+     faipparl1  if   e           k disk
+     fIICL01    if   e           k disk
+     f*IIC       if   e           k disk
+     fAipOrg    if   e           k disk
+     ‚* Validacion de Usuario
+RME  fmsiusu    if   e           k disk
+RME  fmsiprf    if   e           k disk
+RME  fmsimem    if   e           k disk
+RME  fmsivxu    if   e           k disk
+     ‚* Variables
+     d pCia$           s              3a
+     d nFchHoy         s               d   datfmt(*iso)
+     d                sds
+     D vPgm                    1     10
+     d $USRNAM               254    263
+     ‚*
+     d datas           ds                  dtaara(*lda)
+     d  vCla@                  1      2
+     d  vcia@                  4      6
+     d  vpai@                  7      8
+     d  vcam@                  9     14
+RME  d vvalusr         s              1a   inz('0')
+     d vLon            s              1s 0
+     d pCla            s              2a
+     ‚* Inicio de Progrma
+     c
+RME  c                   exsr      susuario
+RME  c                   exsr      svalini
+     c                   Movel     'N'           vInfo
+     c                   Move      uDate         nFchHoy
+     c                   Move      nFchHoy       nFecInv
+     c                   Movel     $usrnam       vUser            10
+     c
+     c                   Exfmt     Dsp001
+     c                   Dow       *in03=*off and *in12=*off
+     C   03
+     Cor 12              Leave
+     c   04              Exsr      sLista
+     c                   Exsr      sValEntPar
+      *
+     c                   If        *in90 = *off and *in04 = *off
+     C                             and *in12='0'
+     c                   Move      nFecInv       pFec              8
+     c                   Move      vLot          pLot              3
+     c                   Exsr      sReportes
+     c                   Endif
+     c
+     c  N12              Exfmt     Dsp001
+     c                   Enddo
+     c                   Seton                                        LR
+     c                   Return
+      *----------------------------------------------------------
+     ‚*    Procesar Reportes
+      *----------------------------------------------------------
+     c     sReportes     Begsr
+      *
+     c                   If        vInfo = 'S'
+     c                   Eval      vLon = %len(%trimr(pLot))
+     c                   if        vLon = 1
+     c                   Eval      pLot = '00' + pLot
+     c                   Elseif    vLon = 2
+     c                   Eval      pLot = '0' + pLot
+     c                   endif
+     c                   Call      'AIPEPA00C'
+     c                   Parm                    vCla
+     c                   Parm                    pLot
+     c                   Parm                    pFec
+     c                   Parm                    vUser
+     c                   Eval      vRUTA='Información en BPCDTA/AIPEPDRW('
+     c                             + %trim(vUser) + ')'
+     c                   Eval      vMsg='Proceso enviado en Batch.'
+     c                   Endif
+     c
+     c                   Endsr
+      *----------------------------------------------------------
+     ‚*    Lista  de Prompt
+      *----------------------------------------------------------
+     c     sLista        Begsr
+      * CLASE
+     c                   If        cam = 'VCLA'
+     C                   Call      'INVY403D'
+     C                   parm                    vCla
+     C                   parm      *blanks       vNomCla          30
+     c                   Movel     vNomCla       vDscCla
+     c                   Endif
+     c
+     c                   Endsr
+      *----------------------------------------------------------
+     ‚*    Validación de Entrada de parámetros
+      *----------------------------------------------------------
+     c     sValEntPar    Begsr
+      *
+     c                   Setoff                                       905051
+     c                   Movel     *blanks       vRUTA
+     c                   Movel     *blanks       vMsg
+      * Origen
+     c                   If        *in90 = *off
+     c*                  Move      vCla          pCla
+     c     vCla          Chain     IPI160IC
+     c                   If        not %found
+     c                   Seton                                        5090
+     c                   Eval      vMsg='Clase No existe.'
+     c                   Move      *blanks       vDscCla
+     c                   Else
+     c                   Movel     ICDES         vDscCla
+     c                   Endif
+      *
+     c                   Endif
+RME  c                   if        *in90='0'
+|    c                   exsr      sacceso
+|    c                   if        paut1$ = 'N'
+     c                   seton                                        5090
+|    c                   leavesr
+|    c                   endif
+RME  c                   endif
+      *Fecha de Despacho
+     c                   Move      nFecInv       vFech            10
+     c                   Eval      vFech=%Subst(vFech:3:4)+'-'+
+     c                                   %Subst(vFech:7:2)+'-'+
+     c                                   %Subst(vFech:9:2)
+     c     *ISO          Test(de)                vFech
+     c                   If        %Error
+     c                   Seton                                        5190
+     c                   Endif
+     c
+     c                   Endsr
+RME  ‚*---------------------------------------------------------------------
+|    ‚* Verifica Tipo de Usuario a Validar
+|    ‚*---------------------------------------------------------------------
+|    c     susuario      begsr
+|    c     $usrnam       chain     msiusu
+|    c                   if        %found
+|    c     usuprf        chain     msiprf
+|    c                   if        %found
+|    c                   select
+|    ‚* Administrador
+|    c                   when      prftip = 'A'
+|    c                   eval      vValusr = '0'
+|    c                   eval      paut1$ = 'S'
+|    ‚* Usuario
+|    c                   when      prftip = 'U'
+|    c                   eval      vValusr = '1'
+|    c                   endsl
+|    c                   endif
+|    ‚* No realiza validación si no esta en MSIUSU
+|    c                   else
+|    c                   eval      vValusr = '0'
+|    c                   eval      paut1$ = 'S'
+|    c                   endif
+RME  c                   endsr
+RME  ‚*---------------------------------------------------------------------
+|    ‚* Verifica acceso de Usuario
+|    ‚*---------------------------------------------------------------------
+|    c     sacceso       begsr
+|    c                   if        vValusr = '0'
+|    c                   leavesr
+|    c                   endif
+|    ‚* Valida Compañia x Perfil y Usuario
+|    c                   if        vCla <> *blanks
+|    c                   call      'MSI9003R'
+|    c                   parm      $UsrNam       pusu$            10
+|    c                   parm      vCla          porg$             2
+|    c                   parm      *blanks       paut1$            1
+|    c                   if        paut1$ = 'N'
+|    c                   eval      vmsg   = 'No autorizado para Origen '+vCla
+|    c                   seton                                        5090
+|    c                   endif
+|    c                   endif
+RME  c                   endsr
+RME  ‚*---------------------------------------------------------------------
+|    ‚* Carga valores iniciales x usuario
+|    ‚*---------------------------------------------------------------------
+|    c     svalini       begsr
+|    c     kmsivxu       klist
+|    c                   kfld                    memusu
+|    c                   kfld                    memsis
+|    c
+|    c     $usrnam       chain     msimem
+|    c                   if        %found
+|    c     kmsivxu       chain     msivxu                             90
+|    c                   dow       *in90 = *off
+|    c                   select
+|    c                   when      'ORG' = %trim(VXUNDF)
+|    c                   movel     VXUCAR        vCla
+|    c                   when      'FDP' = %trim(VXUNDF)
+|    c                   endsl
+|    c     kmsivxu       reade     msivxu                                 90
+|    c                   enddo
+|    c                   endif
+|    ‚* Clase
+|    c     vCla          chain(n)  IPI160IC
+|    c                   eval      vdscCla = ICDES
+|    c
+|    c                   exsr      sacceso
+RME  c                   endsr

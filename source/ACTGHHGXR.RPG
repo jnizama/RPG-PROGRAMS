@@ -1,0 +1,47 @@
+     Frecughh   if   e             disk    PREFIX(W_)
+     FGHHL02    Uf   e           k disk
+     FGXRL01    Uf   e           k disk
+     C                   read      recughhr                               99
+     C                   dow       not *in99
+      *
+      *Actualiza Ghhl02
+     C     KGHHL02       CHAIN     IPG100HH
+     C                   IF        %FOUND
+     C                   Z-ADD     W_HHTRNO      HHTRNO
+     C                   UPDATE    IPG100HH
+     C                   ENDIF
+      *
+      *Actualiza GXRL01
+     C     KGXRL01       SETLL     IPG100XR
+     C     KGXRL01       READE     IPG100XR                               66
+     C                   DOW       NOT *IN66
+     C                   Z-ADD     W_HHTRNO      HHTRNO
+     C                   UPDATE    IPG100XR
+     C     KGXRL01       READE     IPG100XR                               66
+     C                   ENDDO
+     C
+     C                   read      recughhr                               99
+     C
+     c                   enddo
+     c                   seton                                        lr
+      *----------------------------------------------------------------------------
+      * RUTINA INICIAL DEFINE CAMPOS DE CLAVE
+      *----------------------------------------------------------------------------
+     C     *INZSR        BEGSR
+     C
+     C     KGHHL02       KLIST
+     C                   KFLD                    W_HHLDGR
+     C                   KFLD                    W_HHBOOK
+     C                   KFLD                    W_HHYEAR
+     C                   KFLD                    W_HHPERD
+     C                   KFLD                    W_HHJNEN
+     C
+     C     KGXRL01       KLIST
+     C                   KFLD                    W_0              15 0
+     C                   KFLD                    W_HHLDGR
+     C                   KFLD                    W_HHBOOK
+     C                   KFLD                    W_HHYEAR
+     C                   KFLD                    W_HHPERD
+     C                   KFLD                    W_HHJNEN
+     C                   Z-ADD     *ZEROS        W_0
+     C                   ENDSR

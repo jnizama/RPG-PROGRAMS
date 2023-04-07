@@ -1,0 +1,50 @@
+     A*%%TS  SD  20010502  220436  FSISEAF0    REL-V4R2M0  5769-PW1
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A          R IMG001S                   SFL
+     A*%%TS  SD  20010502  220436  FSISEAF0    REL-V4R2M0  5769-PW1
+     A            @OPC           1A  B  8  2
+     A            @COD           2S 0O  8  6
+     A            @DES          30A  O  8 11
+     A          R IMG001C                   SFLCTL(IMG001S)
+     A*%%TS  SD  20010126  172558  FSISEAF0    REL-V4R2M0  5769-PW1
+     A                                      SFLSIZ(0100)
+     A                                      SFLPAG(0010)
+     A                                      WINDOW(IMG001W)
+     A                                      CF12(12 'Retornar')
+     A                                      OVERLAY
+     A  62 63                               SFLDSP
+     A  62                                  SFLDSPCTL
+     A N62                                  SFLDLT
+     A N62                                  SFLCLR
+     A  62                                  SFLEND(*SCRBAR *SCRBAR)
+     A                                  1  1'Grupo Yobel'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(RI)
+     A                                  1 35DATE
+     A                                      EDTCDE(Y)
+     A                                      COLOR(BLU)
+     A                                  2  1USER
+     A                                      COLOR(BLU)
+     A                                  2 35TIME
+     A                                      COLOR(BLU)
+     A                                  3 13'Tabla de Compañias '
+     A                                      COLOR(WHT)
+     A                                      DSPATR(UL)
+     A                                  5  1'Opciones: 1-Seleccionar'
+     A                                      COLOR(BLU)
+     A                                  7  1'Opc'
+     A                                      COLOR(WHT)
+     A                                  7  6'Cod'
+     A                                      COLOR(WHT)
+     A                                  7 11'Descripción'
+     A                                      COLOR(WHT)
+     A          R IMG001W
+     A*%%TS  SD  20000920  102104  FSISGRD0    REL-V4R2M0  5769-PW1
+     A                                      WINDOW(1 2 20 42)
+     A                                 19  1'F12-Retornar'
+     A                                      COLOR(BLU)
+     A          R IMG999R
+     A*%%TS  SD  20000920  102104  FSISGRD0    REL-V4R2M0  5769-PW1
+     A                                      ASSUME
+     A            FLD001         1   O 23  3
