@@ -1,0 +1,21 @@
+     ‚*-------------------------------------------------------------------------
+      * Archivo  : Tabla Tipo de Areas
+      * Sistema  : Gestion Documentaria de Manufactura
+      * Fecha    : Lunes, 20 Agosto 2012
+     ‚*-------------------------------------------------------------------------
+     A          R TARFORR
+     A            TARCAR        15A         COLHDG('Cod. Area')
+     A            TARDES       100A         COLHDG('Descripcion Area')
+     A            TARINS         3A         COLHDG('Instalacion')
+     A            TARCOM       100A         COLHDG('Comentario')
+     A            TAROPI        15A         COLHDG('Ope. Inicial')
+     A            TAROPF        15A         COLHDG('Ope. Final')
+     A            TARCPO        10A         COLHDG('Creado Por')
+     A            TARFCR         8S 0       COLHDG('Fecha Creacion')
+     A            TARHCR         6S 0       COLHDG('Hora Creacion')
+     A            TARUMO        10A         COLHDG('Usuario Modif.')
+     A            TARFMO         8S 0       COLHDG('Fecha Modif.')
+     A            TARHMO         6S 0       COLHDG('Hora Modif.')
+     A            TAREST         2A         COLHDG('Estado')
+     A          K TARCAR
+     A          K TARINS

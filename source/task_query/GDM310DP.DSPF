@@ -1,0 +1,69 @@
+     A*%%TS  SD  20121213  154510  PIBMSBL0    REL-V6R1M0  5761-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      PRINT
+     A*-------------------------------------------------------------------------
+     A          R ASUME
+     A                                      ASSUME
+     A                                      OVERLAY
+     A                                  1  3'  '
+     A*-------------------------------------------------------------------------
+     A          R SFL01                     SFL
+     A*%%TS  SD  20121213  154510  PIBMSBL0    REL-V6R1M0  5761-WDS
+     A                                      SFLNXTCHG
+     A            SH_MET         2A  H
+     A            W_OPC          1A  B  8  2
+     A  41                                  DSPATR(PR)
+     A            W_CODTAR       3A  O  8  5
+     A            W_DESTAR      30A  O  8 11
+     A*-------------------------------------------------------------------------
+     A          R CONTROL                   SFLCTL(SFL01)
+     A*%%TS  SD  20121213  154510  PIBMSBL0    REL-V6R1M0  5761-WDS
+     A                                      SFLSIZ(6000)
+     A                                      SFLPAG(0009)
+     A                                      WINDOW(1 2 21 42)
+     A                                      TEXT('yyyy')
+     A                                      CF03(03 'SALIR')
+     A                                      CF12(12 'CANCELAR')
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&PUNTERO)
+     A  10                                  SFLDSP
+     A  20                                  SFLDSPCTL
+     A  50                                  SFLINZ
+     A  30                                  SFLCLR
+     A  40                                  SFLEND(*MORE)
+     A*                                     WDWBORDER((*DSPATR HI) (*CHAR '-----
+     A*                                     ----'))
+     A*           D_UBICA        4S 0H      TEXT('POSICION DEL CURSOR')
+     A*                                     SFLRCDNBR(CURSOR)
+     A            PUNTERO        5S 0H
+     A            $PGMTIT       15A  O  1  1DSPATR(RI)
+     A                                      COLOR(WHT)
+     A            $PGMCOD       10A  O  2  1
+     A                                  3 10'Consulta de:'
+     A                                      COLOR(WHT)
+     A                                  6  1'1=Seleccionar'
+     A                                      COLOR(BLU)
+     A            W_FAC         40A  O  5  1
+     A                                  7  3'Codigo'
+     A                                      COLOR(WHT)
+     A            W_TIT         12   O  3 23COLOR(WHT)
+     A                                  2 21'GDM'
+     A                                      COLOR(BLU)
+     A                                  7 11'Descripción'
+     A                                      COLOR(WHT)
+     A*-------------------------------------------------------------------------
+     A          R PIE
+     A*%%TS  SD  20110326  221910  PROIBM05    REL-V5R4M0  5722-WDS
+     A                                      WINDOW(CONTROL)
+     A                                      OVERLAY
+     A            W_ERROR       40A  O 20  1COLOR(WHT)
+     A                                 19  1'F3=Salir'
+     A                                      COLOR(BLU)
+     A                                 19 30'F12=Cancelar'
+     A                                      COLOR(BLU)
+     A*-------------------------------------------------------------------------
+     A          R KEEP
+     A                                      KEEP
+     A                                      OVERLAY
+     A                                  1  3' '

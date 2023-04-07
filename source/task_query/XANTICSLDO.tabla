@@ -1,0 +1,8 @@
+     ‚*-------------------------------------------------------------------------
+      * Archivo  : Logico de Tareas por Inst/area
+      * Fecha    : 13/12/12
+     ‚*-------------------------------------------------------------------------
+     A          R TARFORR                   PFILE(*LIBL/GDMTAR)
+     A          K TARINS
+     A          K TARCAR
+     A          S TAREST                    COMP(EQ 'A')
