@@ -1,20 +1,19 @@
-     ‚*------------------------------------------------------------------*
-     ‚*                    YOBEL SCM                                     *
-     ‚* Modulo . . : AQL                                                 *
-     ‚* Aplicativo : Registro de Tipos de Análisis                       *
-     ‚* Fecha  . . : 07/04/2010                                          *
-     ‚* Nota . . . : Standar propio del Subfile                          *
-     ‚*------------------------------------------------------------------*
-     ‚* Descripci. : Migrar para que soporte - LX                        *
-     ‚* Fecha  . . : 18/05/2012                                          *
-     ‚* Requerimien: R001192                                             *
-     ‚*------------------------------------------------------------------*
+     â€š*------------------------------------------------------------------*
+     â€š* Modulo . . : AQL                                                 *
+     â€š* Aplicativo : Registro de Tipos de AnÃ¡lisis                       *
+     â€š* Fecha  . . : 07/04/2010                                          *
+     â€š* Nota . . . : Standar propio del Subfile                          *
+     â€š*------------------------------------------------------------------*
+     â€š* Descripci. : Migrar para que soporte - LX                        *
+     â€š* Fecha  . . : 18/05/2012                                          *
+     â€š* Requerimien: R001192                                             *
+     â€š*------------------------------------------------------------------*
      h datfmt(*iso) datedit(*ymd-)
      faql065dp  cf   e             workstn Infds(ds_fileds)
      f                                     sfile(sfl01:w_sln01)
       *
      fzccl01    uf a e           k disk    rename(IPZ100cc:zccl01r)
-     ‚*- Variables de Control de Programa                                   ----
+     â€š*- Variables de Control de Programa                                   ----
      d PgmTit@         c                   const('Yobel SCM')
      d sds_estado     sds
      d   sds_proced      *proc
@@ -30,7 +29,7 @@
      d sf_inicio       s              2s 0  inz(07)
      d sf_lineas       s              2s 0  inz(12)
       *-
-     ‚*--------------------< Rutina Execución de Programa >---------------------
+     â€š*--------------------< Rutina ExecuciÃ³n de Programa >---------------------
      C                   dow       (Not *In03) and (Not *In12)
       *-
      c     w_next        caseq     10            sr_IniciSubf
@@ -41,7 +40,7 @@
      c                   enddo
       *-
      c                   Eval      *Inlr = *On
-     ‚*--------------------< Rutina de Inicio del Programa >---------------------
+     â€š*--------------------< Rutina de Inicio del Programa >---------------------
      c     Sr_IniciSubf  BegSr
       *
      c                   eval      d_Ubica = 1
@@ -54,7 +53,7 @@
      c                   eval      w_next  = 20
       *
      c                   EndSr
-     ‚*--------------------< Rutina de Carga de Subfile >-----------------------
+     â€š*--------------------< Rutina de Carga de Subfile >-----------------------
      c     Sr_CargaSubf  Begsr
      c
      c                   eval      *In53 = *off
@@ -81,7 +80,7 @@
      c                   z-add     0             W_linea           5 0
      c
      c                   EndSr
-     ‚*-----------------< Rutina Ejecuta Subfile >--------------------
+     â€š*-----------------< Rutina Ejecuta Subfile >--------------------
      c     sr_DisplSubf  Begsr
      c                   write     header
      c                   write     footer
@@ -103,7 +102,7 @@
      C                   EndSl
       *
      c                   EndSr
-     ‚*----------------< Adiciona Códigos Análisis >------------------
+     â€š*----------------< Adiciona CÃ³digos AnÃ¡lisis >------------------
      c     sr_Adicionar  Begsr
      c                   clear                   win01
      c                   exsr      sr_Genera
@@ -133,7 +132,7 @@
      c                   eval      *in10='0'
      c                   eval      *in12='0'
      c                   Endsr
-     ‚*-----------------< Rutina Modifica >-----------------
+     â€š*-----------------< Rutina Modifica >-----------------
      c     sr_Modifica   Begsr
      c                   clear                   win01
      c                   movel     w_cod         y_cod
@@ -160,7 +159,7 @@
      c                   eval      *in10='0'
      c                   eval      *in12='0'
      c                   Endsr
-     ‚*--------------------< Rutina Genera Correlativo >---------------------
+     â€š*--------------------< Rutina Genera Correlativo >---------------------
      c     sr_Genera     begsr
      c                   z-add     *zeros        w_codn            1 0
      C     k_cctabl      chain     zccl01r                            82
@@ -175,7 +174,7 @@
      c                   endif
      c                   movel     w_codn        y_cod
      c                   endsr
-     ‚*----------------< Posicion Relativa de cursor >--------------------------
+     â€š*----------------< Posicion Relativa de cursor >--------------------------
      c     sr_cursor     Begsr
      c
      c     cursor        div       256           fila              5 0
@@ -193,7 +192,7 @@
      c                   eval      fila = t_sln01
      c                   endif
      c                   EndSr
-     ‚*--------------------< Rutina Validar Opciones >-----------------------
+     â€š*--------------------< Rutina Validar Opciones >-----------------------
      c     sr_valopc     Begsr
       *
      c                   eval      w_fila = 0
@@ -257,7 +256,7 @@
      c                   endif
      c                   endif
      c                   EndSr
-     ‚*--------------------< Rutina Inicial de Programa >-----------------------
+     â€š*--------------------< Rutina Inicial de Programa >-----------------------
      c     *inzsr        Begsr
       *-
      c     Pky1          klist
