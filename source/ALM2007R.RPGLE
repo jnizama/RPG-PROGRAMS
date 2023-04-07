@@ -1,11 +1,10 @@
-     ‚*------------------------------------------------------------------*
-     ‚* Selección de Clases para el envio de mail automatico
+     â€š*------------------------------------------------------------------*
+     â€š* SelecciÃ³n de Clases para el envio de mail automatico
       * Fecha : Agosto 2004
-     ‚*------------------------------------------------------------------*
-     ‚* Modificación : Migracion de ERP BPCS v6 - BPCS LX
-     ‚* Fecha        : 15 Febrero 2011
-     ‚* Autor        : Ricardo Jonathan Mejia Rodriguez
-     ‚*------------------------------------------------------------------*
+     â€š*------------------------------------------------------------------*
+     â€š* ModificaciÃ³n : Migracion de ERP BPCS v6 - BPCS LX
+     â€š* Fecha        : 15 Febrero 2011
+     â€š*------------------------------------------------------------------*
      h datfmt(*iso) datedit(*ymd-)
      fiicl01    if   e           k disk    rename(IPI160IC:rIIC)
      floterr1   uf   e           k disk
