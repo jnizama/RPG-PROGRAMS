@@ -1,0 +1,79 @@
+FNombarch++IPEASF.....L.....A.Dispos+.Palabras clave+++++++++++++++++++
+
+*************** Author: JORGE NIZAMA ************************************
+*************** Date: 05-05-2022 ************************************
+* Information: Read transaction file of credit cards 		    *
+*		and apply charges or discount according card type   *
+*************************************************************************
+
+*************** BEGINING ************************************
+FBMOVTRANS IF   E             DISK
+FTARJDEP   UF   E           K DISK
+F                                     PREFIX(D_)
+FMAETARJ   UF A E           K DISK
+F                                     PREFIX(M_)
+DNumTarjActu      s             20
+DComisionRetiro   s              5P 2 INZ(7.00)
+C                   SETOFF                                           LR
+C                   READ      MOVI
+C                   DOW       NOT %EOF()
+C                   If        %EOF() ='0'
+C     NUMTARJ       Chain(n)  MAETARJ
+C                   if        %found()                                 
+C                   Eval      NumTarjActu  = NumTarj
+C*                  DSPLY                   M_SALDO
+C                   Else
+C                   EXSR      s_ValTarDep
+C                   Endif
+C                   ExSr      s_Trans
+C                   Read      MOVI
+C                   Endif
+C                   Enddo
+C                   Seton                                            LR
+C     s_ValTarDep   BEGSR
+C     NUMTARJ       CHAIN     DEPEN
+C                   IF        %FOUND()
+C*                  DSPLY                   D_DEPTARJ
+C     D_MAETARJ     Chain     MAETARJ
+C                   IF        %FOUND()
+C*                  DSPLY                   M_SALDO
+C                   Eval      NumTarjActu  = D_MAETARJ
+C                   EndIf
+C                   Endif
+C                   EndSr
+C****Seccion de Transacciones(C=Compras;R=Retiros;P=Pagos)
+C     s_Trans       BegSr
+c     NumTarjActu   Chain     MTARJETA
+c                   If        %found()
+C                   Select
+C     TIPOMOV       WhenEQ    'C'
+C                   ExSr      s_TranCompra
+C     TIPOMOV       WhenEQ    'R'
+c                   ExSr      s_TranRetiro
+c     TIPOMOV       WhenEQ    'P'
+c                   ExSr      s_TranPagos
+c                   EndSl
+c                   Endif
+c                   EndSr
+c****Movimiento de tarjeta de credito
+ /Free
+    //Mov.de compras(Actualiza Saldo si la compra no sup.el credito)
+      BegSr s_TranCompra;
+      If M_Saldo > Monto;
+         M_Saldo = M_Saldo - Monto;
+         Update MTARJETA;
+      Endif;
+    EndSr;
+  //Movimiento de retiro(Act.Saldo con retiro + comision por retiro)
+    BegSr s_TranRetiro;
+      If M_Saldo > Monto + ComisionRetiro;
+         M_Saldo = M_Saldo - (Monto + ComisionRetiro);
+         Update MTARJETA;
+      Endif;
+    EndSr;
+  //Movimienteo de Pagos(Act.Saldo como abono a la cuenta)
+    BegSr s_TranPagos;
+       M_Saldo = M_Saldo + Monto;
+       Update MTARJETA;
+    EndSr;
+/End-Free
