@@ -1,14 +1,13 @@
-     ‚*------------------------------------------------------------------*
-     ‚*                    YOBEL SCM                                     *
-     ‚* Aplicativo : Mantenimiento tabla Parametros de Configuracion FTP *
-     ‚* Fecha  . . : 23/01/2008                                          *
-     ‚* Nota . . . : Standar propio del Subfile                          *
-     ‚*------------------------------------------------------------------*
+     â€š*------------------------------------------------------------------*
+     â€š* Aplicativo : Mantenimiento tabla Parametros de Configuracion FTP *
+     â€š* Fecha  . . : 23/01/2008                                          *
+     â€š* Nota . . . : Standar propio del Subfile                          *
+     â€š*------------------------------------------------------------------*
      fali200dp  cf   e             workstn infds(ds_fileds)
      f                                     sfile(sfl01:w_sln01)
      faliftp    uf a e           k disk
       *
-     ‚* Recupera Datos de sistema                                           ----
+     â€š* Recupera Datos de sistema                                           ----
      d sds_estado     sds
      d   sds_proced      *proc
      d   $User               254    263
@@ -17,7 +16,7 @@
      d  cursor               370    371b 0
      d  rrelat               378    379b 0
       *-
-     ‚* Variables de Control de Programa                                    ----
+     â€š* Variables de Control de Programa                                    ----
      d PgmTit@         c                   const('Yobel SCM')
      d w_next          s              3p 0
      d ww_dat          s              8a
@@ -28,7 +27,7 @@
      d sf_inicio       s              2s 0  inz(08)
      d sf_lineas       s              2s 0  inz(12)
       *-
-     ‚* Rutina principal de programa                                        ----
+     â€š* Rutina principal de programa                                        ----
      c                   dow       not *in03
      c     w_next        caseq     10            sr_IniciSubf
      c     w_next        caseq     20            sr_CargaSubf
@@ -39,7 +38,7 @@
      c                   eval      *inlr = *on
      c                   return
       *
-     ‚*--------------------< Rutina de Inicial de Subfile >---------------------
+     â€š*--------------------< Rutina de Inicial de Subfile >---------------------
      c     sr_inicisubf  begsr
       *
      c                   eval      d_ubica = 1
@@ -52,7 +51,7 @@
       *
      c                   endsr
       *
-     ‚*--------------------< Rutina de Carga de Subfile >-----------------------
+     â€š*--------------------< Rutina de Carga de Subfile >-----------------------
      c     sr_cargasubf  Begsr
       *-
      c                   eval      *in53 = *off
@@ -85,7 +84,7 @@
       *
      c                   Endsr
       *
-     ‚*--------------------< Rutina de Carga de Subfile >-----------------------
+     â€š*--------------------< Rutina de Carga de Subfile >-----------------------
      c     sr_displSubf  Begsr
      c*-
      c                   if        *in53 and (k_ubica > 0)
@@ -109,7 +108,7 @@
      c                   Endif
       *
      c                   Exsr      sr_cursor
-     c*-   Opción digitada
+     c*-   OpciÃ³n digitada
      c                   exsr      sr_valopc
       *         Valida Lo ingresado
      c                   if        x_ubica>0
@@ -136,7 +135,7 @@
      c                   Endsl
       *
      c     fin_displ     Endsr
-     ‚*----------------< Adicionar Parámetros  >-------------------------------
+     â€š*----------------< Adicionar ParÃ¡metros  >-------------------------------
      c     sr_add        BegSr
      c                   exsr      sr_movfmt
      c                   Dow       *in12 = '0'
@@ -152,7 +151,7 @@
      c                   eval      *in06='0'
      c                   EndSr
      c
-     ‚*----------------< Valida Opciones Ingresadas >---------------------------
+     â€š*----------------< Valida Opciones Ingresadas >---------------------------
      c     sr_valopc     Begsr
      c                   eval      w_fila = 0
      c                   eval      w_error = *all' '
@@ -265,7 +264,7 @@
      c                   endif
      c                   endsr
       *-
-     ‚*----------------< Mover datos a windows >-------------------------------
+     â€š*----------------< Mover datos a windows >-------------------------------
      c     sr_movfmt     BegSr
      c                   eval      v_cia = w_cia
      c                   eval      v_des = w_des
@@ -279,7 +278,7 @@
      c                   eval      v_far = 'ASCII'
      c                   eval      v_fun = w_fun
      c                   Endsr
-     ‚*----------------< Mover datos a windows >-------------------------------
+     â€š*----------------< Mover datos a windows >-------------------------------
      c     sr_move       BegSr
      c                   movel     w_fun         k_fun
      c     k_aliftp2     chain     aliftpr
@@ -297,7 +296,7 @@
      c                   eval      v_fun = alifun
      c                   endif
      c                   EndSr
-     ‚*----------------< Mover datos a Actualizar >-------------------------------
+     â€š*----------------< Mover datos a Actualizar >-------------------------------
      c     sr_movact     BegSr
      c*                  eval      v_cia = w_cia
      c*                  eval      v_des = w_des
@@ -311,7 +310,7 @@
      c*                  eval      v_far = 'ASCII'
      c*                  eval      v_fun = w_fun
      c                   EndSr
-     ‚*----------------< Graba datos Configurados >-------------------------------
+     â€š*----------------< Graba datos Configurados >-------------------------------
      c     sr_graba      BegSr
      c                   eval      alicia = v_cia
      c                   eval      alifun = v_fun
@@ -330,7 +329,7 @@
      c                   Write     aliftpr
      c
      c                   EndSr
-     ‚*----------------< Ubica Cursor por Enter >-------------------------------
+     â€š*----------------< Ubica Cursor por Enter >-------------------------------
      c     sr_UbicaCursorBegsr
       *
      c                   eval      w_opc  = ' '
@@ -350,7 +349,7 @@
      c                   endif
       *-
      c                   Endsr
-     ‚*----------------< Avanzar Imagen >---------------------------------------
+     â€š*----------------< Avanzar Imagen >---------------------------------------
      c     sr_avp_sf1    Begsr
       *-
      c                   eval      d_ubica = fila
@@ -361,7 +360,7 @@
       *-
      c                   Endsr
       *-
-     ‚*----------------< Retroceder de imagen >---------------------------------
+     â€š*----------------< Retroceder de imagen >---------------------------------
      c     sr_Ret_sf1    Begsr
       *-
      c                   eval      d_ubica = fila
@@ -372,7 +371,7 @@
       *-
      c                   Endsr
       *-
-     ‚*----------------< Posicion Relativa de cursor >--------------------------
+     â€š*----------------< Posicion Relativa de cursor >--------------------------
      c     sr_cursor     Begsr
       *-
      c     cursor        div       256           fila              4 0
@@ -392,16 +391,16 @@
       *
      c                   endsr
       *
-     ‚*--------------------< Rutina Inicial de Programa >-----------------------
+     â€š*--------------------< Rutina Inicial de Programa >-----------------------
      c     *inzsr        begsr
       *
-     ‚* Parametros de Entrada
+     â€š* Parametros de Entrada
      c     *entry        plist
      c                   parm                    p_cia             3
      c
      c                   eval      k_codcli = p_cia
      c                   eval      w_cia    = p_cia
-     ‚* Claves de acceso
+     â€š* Claves de acceso
      c     k_aliftp      klist
      c                   kfld                    k_codcli          3            ALI = Alicorp
       *
@@ -412,14 +411,14 @@
      c     *like         define    alifun        k_fun
      c*    *like         define    item          k_item
      c
-     ‚* Datos de Cabecera
+     â€š* Datos de Cabecera
      c                   Select
      c                   When      w_cia = 'ALI'
      c                   eval      w_des = '109383 - ALICORP'
      c                   When      w_cia = 'XXX'                                Futuras Cias.
      c                   eval      w_des = ' '
      c                   EndSl
-     ‚* Primera Lectura                                                     ----
+     â€š* Primera Lectura                                                     ----
      c                   movel(p)  PgmTit@       $PgmTit
      c                   movel     sds_proced    $pgmcod
      c                   z-add     10            w_next
