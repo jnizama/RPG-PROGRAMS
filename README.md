@@ -1,4 +1,4 @@
-# RPG Programms on an AS/400 Midrange.
+# RPG, RPGLE Programms on an AS/400 Midrange.
 
 Partial source code of a system of production and warehouse.
 
