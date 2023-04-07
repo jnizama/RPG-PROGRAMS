@@ -1,17 +1,16 @@
-     ‚*------------------------------------------------------------------*
-     ‚*                    GRUPO YOBEL                                   *
-     ‚* Modulo:      Comercialización                                    *
-     ‚* Aplicativo:  Crea Tabla de mercaderia vencida a 9 y 12 meses     *
-     ‚* Fecha:       16/12/2002                                          *
-     ‚*------------------------------------------------------------------*
+     â€š*------------------------------------------------------------------*
+     â€š* Modulo:      ComercializaciÃ³n                                    *
+     â€š* Aplicativo:  Crea Tabla de mercaderia vencida a 9 y 12 meses     *
+     â€š* Fecha:       16/12/2002                                          *
+     â€š*------------------------------------------------------------------*
      h datfmt(*iso) datedit(*ymd-)
      fLotven    if a e           k disk
       *
-     ‚* Variables de Programa                                               ----
+     â€š* Variables de Programa                                               ----
      d w_fecha         s               d   datfmt(*iso)
      d w_saldo         s             11s 3 inz(0)
       *
-     ‚* Variables de SQL                                                    ----
+     â€š* Variables de SQL                                                    ----
      d Xlprod          s             15a
      d Xlexdt          s              8s 0
      d Xidesc          s             30a
@@ -24,30 +23,30 @@
      d Xlissu          s             11s 3
      d Xladju          s             11s 3
      d Xlrct           s             11s 3
-     ‚*--------------------< Rutina Inicial de Programa >-----------------------
+     â€š*--------------------< Rutina Inicial de Programa >-----------------------
      c     *inzsr        begsr
       *-
-     ‚* Formato de claves para tabla de mercaderia                          ----
+     â€š* Formato de claves para tabla de mercaderia                          ----
      c     k_merc        klist
      c                   kfld                    Xllot
      c                   kfld                    Xlprod
       *-
-     ‚* fecha actual                                                        ----
+     â€š* fecha actual                                                        ----
      c                   move      *date         w_fecha
      c                   move      w_fecha       w_fecI            8 0
-     ‚* 09 meses                                                            ----
+     â€š* 09 meses                                                            ----
      c                   adddur    9:*m          w_fecha
      c                   move      w_fecha       w_fecF            8 0
-     ‚* 12 meses                                                            ----
+     â€š* 12 meses                                                            ----
      c                   adddur    4:*m          w_fecha
      c                   move      w_fecha       w_fecX            8 0
       *-
-     ‚* Inicializa tabla de mercaderia vencida
+     â€š* Inicializa tabla de mercaderia vencida
      c/EXEC SQL
      c+ delete from bpcdta/lotven
      c/end-exec
       *-
-     ‚* Crea cursor
+     â€š* Crea cursor
      c/exec sql
      c+ declare C1 cursor for select
      c+ a.Lprod, a.Lexdt, b.Idesc, b.iclas, b.saflg, c.Llot,                    Recupera rango de -
@@ -63,19 +62,19 @@
      c+ order by b.iclas,c.llot, a.Lprod, a.lexdt
      c/end-exec
       *
-     ‚* Open a Cursor                                                       ----
+     â€š* Open a Cursor                                                       ----
      c/exec sql
      c+ open C1
      c/end-exec
       *-
-     ‚* Llena File de Trabajo                                               ----
+     â€š* Llena File de Trabajo                                               ----
      c                   exsr      sr_Ini
-     ‚* Close Cursor                                                        ----
+     â€š* Close Cursor                                                        ----
      c/exec sql
      c+ close C1
      c/end-exec
       *-
-     ‚* Fin-Programa                                                        ----
+     â€š* Fin-Programa                                                        ----
      c*Actualiza Favel
      c                   exsr      sUpdFlgFavel
      c                   exsr      sDltJohnson
@@ -86,7 +85,7 @@
       *-
      c                   Endsr
       *-
-     ‚*--------------------< Rutina de Principal de Grabación de Datos >--------
+     â€š*--------------------< Rutina de Principal de GrabaciÃ³n de Datos >--------
      c     sr_Ini        Begsr
      c*-
      c/exec sql
@@ -126,9 +125,9 @@
      c                   enddo
      c*-
      c                   Endsr
-     ‚*--------------------< Actualiza Flag DE FAVEL        >--------
+     â€š*--------------------< Actualiza Flag DE FAVEL        >--------
      c     sUpdFlgFavel  begsr
-     ‚* ACTUALIZA
+     â€š* ACTUALIZA
      c/exec sql
      c+ UPDATE BPCDTA/LOTVEN  SET  FLG = 'F'
      c+  where  clase  in ('PA','PB','PD','PS','PX','P4','P6','PC','PW',
@@ -137,15 +136,15 @@
      c/end-exec
      c                   endsr
      c
-     ‚*--------------------< ELIMINA JOHNSON                >--------
+     â€š*--------------------< ELIMINA JOHNSON                >--------
      c     sDltJohnson   begsr
      c/EXEC SQL
      c+ delete from bpcdta/lotven where clase = 'JJ'
      c/end-exec
      c                   endsr
-     ‚*--------------------< Actualiza Flag DE MATERIAS PRIMAS>--------
+     â€š*--------------------< Actualiza Flag DE MATERIAS PRIMAS>--------
      c     sUpdMatPrim   begsr
-     ‚* ACTUALIZA
+     â€š* ACTUALIZA
      c/exec sql
      c+ UPDATE BPCDTA/LOTVEN  SET  FLG = 'M'
      c+  where  clase  like 'M%'
