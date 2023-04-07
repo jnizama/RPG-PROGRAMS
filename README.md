@@ -25,7 +25,7 @@ Partial source code of a system of production and warehouse.
 Free RPG
 <img width="814" alt="image" src="https://user-images.githubusercontent.com/3922089/230552321-a76e23f7-89dd-4378-81ff-787423332334.png">
 
-Copying source throught telnet
+Copying source from server to PC using FTP
 
 <img width="637" alt="image" src="https://user-images.githubusercontent.com/3922089/230552394-a26ceb08-e0c1-4680-9558-e28f8dbb2fd2.png">
 
