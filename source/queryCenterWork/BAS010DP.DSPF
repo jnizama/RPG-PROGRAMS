@@ -1,0 +1,80 @@
+     A*%%TS  SD  20070622  154609  FSISCCE0    REL-V5R3M0  5722-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      PRINT
+     A*
+     A          R KEEP
+     A*%%TS  SD  20070108  153658  FSISVSM0    REL-V5R3M0  5722-WDS
+     A                                      KEEP
+     A*
+     A          R ASSUME
+     A*%%TS  SD  20070108  153449  FSISVSM0    REL-V5R3M0  5722-WDS
+     A                                      ASSUME
+     A                                  1  2' '
+     A*
+     A          R WIN01
+     A*%%TS  SD  20070108  153449  FSISVSM0    REL-V5R3M0  5722-WDS
+     A                                      WINDOW(5 20 18 55)
+     A*                                     WDWBORDER((*COLOR YLW) (*DSPATR RI)-
+     A*                                      (*CHAR '        '))
+     A          R SFL01                     SFL
+     A*%%TS  SD  20070221  095016  FSISVSM0    REL-V5R3M0  5722-WDS
+     A                                      SFLNXTCHG
+     A            W_OPC          1A  B  6  3
+     A  61                                  DSPATR(PC)
+     A  61                                  DSPATR(RI)
+     A            W_DCENTRO     38A  O  6 14
+     A            SFH_TABDCO    20A  H
+     A            SFH_TABAD1    15A  H
+     A            SFH_TABAD2    15A  H
+     A            SFH_TABAD3    15A  H
+     A            SFH_TABAD4    15A  H
+     A            SFH_TABAD5    15A  H
+     A            W_CENTRO       6Y 0O  6  6EDTCDE(Z)
+     A*
+     A          R SFLCTL01                  SFLCTL(SFL01)
+     A*%%TS  SD  20070622  154609  FSISCCE0    REL-V5R3M0  5722-WDS
+     A                                      CF12(12 'Anterior')
+     A                                      VLDCMDKEY(93 'Tecla v lida')
+     A                                      ROLLUP(18 'Avanzar')
+     A                                      ROLLDOWN(19 'Retroceder')
+     A                                      CF13(13 'Selecionar Todo')
+     A                                      KEEP
+     A                                      OVERLAY
+     A                                      PROTECT
+     A  53                                  SFLDSP
+     A  52                                  SFLDSPCTL
+     A  56                                  SFLINZ
+     A  54                                  SFLCLR
+     A  55                                  SFLEND(*MORE)
+     A                                      SFLRNA
+     A                                      SFLSIZ(0010)
+     A                                      SFLPAG(0009)
+     A                                      WINDOW(WIN01)
+     A            REGIST        10A  H
+     A            CAMPO         10A  H
+     A            D_UBICA        4S 0H      TEXT('Posici¢n Cursor')
+     A                                      SFLRCDNBR(CURSOR)
+     A                                  2  1'Opcion:'
+     A                                  2  9'1=Seleccionar'
+     A                                      DSPATR(HI)
+     A                                      COLOR(BLU)
+     A                                  4  2'Opc'
+     A                                      DSPATR(HI)
+     A                                  4  6'Centro'
+     A                                      DSPATR(HI)
+     A                                  4 20'Descripción'
+     A                                      DSPATR(HI)
+     A*
+     A*
+     A          R FOOTER
+     A*%%TS  SD  20070622  153642  FSISCCE0    REL-V5R3M0  5722-WDS
+     A                                      WINDOW(WIN01)
+     A                                      OVERLAY
+     A                                      PUTOVR
+     A                                 16  2'F12=Cancelar'
+     A                                      DSPATR(HI)
+     A                                      COLOR(BLU)
+     A            W_ERROR       50A  O 17  2DSPATR(HI)
+     A                                 16 31'F13=Selecciona todos'
+     A                                      COLOR(BLU)
