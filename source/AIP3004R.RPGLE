@@ -2,7 +2,6 @@
       *----------------------------------------------------------
       * Carga FICTICDDM
       * Realizado : 10-Jun-2004
-      * Usuario   : J.Ruiz G.
       *----------------------------------------------------------
      fFicTicDDM uf a e           K Disk    Prefix( WRK_ )
      f                                     Rename(FicTicr: rFic )
