@@ -6,6 +6,8 @@ Partial source code of a system of production and warehouse.
 
 <img width="981" alt="image" src="https://user-images.githubusercontent.com/3922089/230551871-ee8e9787-6c8b-4158-a79b-eaa1dba811b4.png">
 
+Main Screen 
+
 <img width="643" alt="image" src="https://user-images.githubusercontent.com/3922089/230551940-da80ae7a-8d29-4d4a-abe8-3b27d52536cc.png">
 
 <img width="727" alt="image" src="https://user-images.githubusercontent.com/3922089/230552010-41a6d205-e4b9-4198-b6db-077cc858c5ee.png">
