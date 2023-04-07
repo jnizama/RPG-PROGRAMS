@@ -1,13 +1,12 @@
-     ‚*------------------------------------------------------------------*
-     ‚*                    YOBEL SCM                                     *
-     ‚* Modulo . . : AQL                                                 *
-     ‚* Aplicativo : Inicializa patrón de análisis segun Producto        *
-     ‚* Fecha  . . : 12/04/2010                                          *
-     ‚*------------------------------------------------------------------*
-     ‚* Descripci. : Migrar para que soporte - LX                        *
-     ‚* Fecha  . . : 18/05/2012                                          *
-     ‚* Requerimien: R001192                                             *
-     ‚*------------------------------------------------------------------*
+     â€š*------------------------------------------------------------------*
+     â€š* Modulo . . : AQL                                                 *
+     â€š* Aplicativo : Inicializa patrÃ³n de anÃ¡lisis segun Producto        *
+     â€š* Fecha  . . : 12/04/2010                                          *
+     â€š*------------------------------------------------------------------*
+     â€š* Descripci. : Migrar para que soporte - LX                        *
+     â€š* Fecha  . . : 18/05/2012                                          *
+     â€š* Requerimien: R001192                                             *
+     â€š*------------------------------------------------------------------*
      h datfmt(*iso) datedit(*ymd-)
      faqlmap    uf   e           k disk
       *-
@@ -19,7 +18,7 @@
      d  tecla                369    369
      d  intro          c                   const(X'F1')
       *-
-     ‚*--------------------< Rutina inicializa Patron >---------------------
+     â€š*--------------------< Rutina inicializa Patron >---------------------
      c     sr_Inicializa begsr
      c*
      c     k_aqlmap      chain     aqlmapr                            40
@@ -29,16 +28,16 @@
      c                   enddo
      c*
      c                   Endsr
-     ‚*--------------------< Rutina Inicial de Programa >-----------------------
+     â€š*--------------------< Rutina Inicial de Programa >-----------------------
      c     *inzsr        begsr
-     ‚*- Parametros de Entrada                                              ----
+     â€š*- Parametros de Entrada                                              ----
      c     *entry        plist
      c     k_fac         parm                    p_fac
      c     k_cli         parm                    p_cli
      c     k_prod        parm                    p_prod
      c     k_tipo        parm                    p_tipo
      c*
-     ‚*- Declaración de Variables                                           ----
+     â€š*- DeclaraciÃ³n de Variables                                           ----
      c     *like         define    mapfac        p_fac
      c     *like         define    mapfac        k_fac
      c     *like         define    mapcli        p_cli
@@ -47,13 +46,13 @@
      c     *like         define    mapite        k_prod
      c     *like         define    maptip        p_tipo
      c     *like         define    maptip        k_tipo
-     ‚* Estructura de Claves
+     â€š* Estructura de Claves
      c     k_aqlmap      klist
      c                   kfld                    k_fac
      c                   kfld                    k_cli
      c                   kfld                    k_prod
      c                   kfld                    k_tipo
-     ‚* Executa Programa
+     â€š* Executa Programa
      c                   exsr      sr_Inicializa
      c                   eval      *inlr = *on
       *-
