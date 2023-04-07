@@ -1,9 +1,8 @@
-     ‚*------------------------------------------------------------------*
-     ‚*                      I&D                                         *
-     ‚* Modulo     : INV                                                 *
-     ‚* Aplicativo : Ingresa Facility para Movimiento entre Almacenes    *
-     ‚* Fecha:       07/05/2008                                          *
-     ‚*------------------------------------------------------------------*
+     â€š*------------------------------------------------------------------*
+     â€š* Modulo     : INV                                                 *
+     â€š* Aplicativo : Ingresa Facility para Movimiento entre Almacenes    *
+     â€š* Fecha:       07/05/2008                                          *
+     â€š*------------------------------------------------------------------*
      h datfmt(*iso) datedit(*ymd-)
      fAUD200DP  cf   e             workstn infds(infds)
      flwkhst    if   e           k disk    rename(IPL100WK:lwkhst01r)
@@ -16,23 +15,23 @@
      d  tecla                369    369
      d  intro          c                   const(X'F1')
       *-
-     ‚*--------------------< Rutina Execución de Programa >---------------------
+     â€š*--------------------< Rutina ExecuciÃ³n de Programa >---------------------
      c     RutPad        begsr
       *-
-     ‚* Proceso Principal
+     â€š* Proceso Principal
      c                   Dow       (not *In03) and (not *in12)
       *->
      c                   exfmt     wdw01
      c                   eval      vmsgerr = *all' '
       *->
-     ‚* Salida del Programa x función
+     â€š* Salida del Programa x funciÃ³n
      c                   if        *in03 or *in12
      c                   leave
      c                   endif
      c*->
-     ‚* Valida lo ingresado
+     â€š* Valida lo ingresado
      c                   exsr      sValIngDat
-     ‚* sin error
+     â€š* sin error
      c                   If        vTodoOK<>'NO'
      c                   ExSr      sr_Call
      c                   endif
@@ -41,7 +40,7 @@
       *
      c                   Endsr
 
-     ‚*--------------------< Rutina q' invoca Ste Programa >--------------------
+     â€š*--------------------< Rutina q' invoca Ste Programa >--------------------
      c     sr_Call       begsr
       *
       *  Historico de Centros de Trabajo  - Interactivo
@@ -54,10 +53,10 @@
       *
      c                   endsr
 
-     ‚*--------------------< Valida Ingreso de Datos >--------------------------
+     â€š*--------------------< Valida Ingreso de Datos >--------------------------
      c     sValIngDat    Begsr
      c*-
-     ‚* Inicializa Variables de rutina
+     â€š* Inicializa Variables de rutina
      c                   movel     *blanks       vTodoOk           2
      c                   movel     w_periodo     p_periodo         6
       *-
@@ -75,7 +74,7 @@
      c                   enddo
       *-
      c                   Endsr
-     ‚*--------------------< Rutina Inicial de Programa >-----------------------
+     â€š*--------------------< Rutina Inicial de Programa >-----------------------
      c     *inzsr        begsr
       *-
      c     k_lwkhst      klist
